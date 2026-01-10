@@ -1,49 +1,36 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Bài 1 - Bootstrap 5</title>
+    <title>Bootstrap 5</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
+    
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <!-- Bootstrap JS -->
+    
     <script src="js/bootstrap.bundle.min.js"></script>
+    
+    <style>
+        /* Thêm một chút style để chữ trắng dễ nhìn hơn trên nền màu đậm */
+        header, nav, aside, article, footer {
+            color: white;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- FULL màn hình ngang -->
-    <div class="container-fluid">
-
-        <!-- Header -->
-        <header class="row bg-warning p-1">
-            <h3 class="text-center m-0">Header</h3>
-        </header>
-
-        <!-- Nav -->
-        <nav class="row bg-primary p-1">
-            <h5 class="text-white text-center m-0">Nav</h5>
-        </nav>
-
-        <!-- Content (chiếm phần còn lại của màn hình) -->
-        <section class="row" style="min-height: calc(100vh - 180px);">
-            <!-- Sidebar -->
-            <aside class="col-sm-4 bg-success p-5">
-                <h5>Side bar</h5>
-            </aside>
-
-            <!-- Main content -->
-            <article class="col-sm-8 bg-info p-5">
-                <h5>Main content</h5>
-            </article>
+    <div class="container">
+        <header class="row bg-warning p-2 text-dark">Header</header>
+        
+        <nav class="row bg-primary p-2">Nav</nav>
+        
+        <section class="row">
+            <aside class="col-sm-4 bg-success p-5">Side bar</aside>
+            
+            <article class="col-sm-8 bg-info p-5">Main content</article>
         </section>
-
-        <!-- Footer -->
-        <footer class="row bg-danger p-1">
-            <h5 class="text-white text-center m-0">Footer</h5>
-        </footer>
-
+        
+        <footer class="row bg-danger p-3">Footer</footer>
     </div>
 
 </body>
