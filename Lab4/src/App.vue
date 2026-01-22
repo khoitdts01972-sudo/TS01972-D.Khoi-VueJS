@@ -8,7 +8,7 @@ import Bai4 from './components/Bai4.vue';
 <template>
   <div>
     
-    <Bai4 />
+    <Bai2 />
     </div>
 </template>
 
