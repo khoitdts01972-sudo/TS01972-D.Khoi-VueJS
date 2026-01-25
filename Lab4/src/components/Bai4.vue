@@ -1,5 +1,9 @@
 <template>
-  <div class="container mt-5">
+  <button @click="isVisible = !isVisible">
+    {{ isVisible ? 'Hide' : 'Show' }}
+  </button>
+
+  <div v-if="isVisible" class="container mt-5">
     <h1 class="text-center mb-4">Kiến thức sức khỏe cộng đồng</h1>
     <div class="row">
       <div v-for="(item, index) in items" :key="index" class="col-sm-4 mb-4">
@@ -21,7 +25,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+
 import img1 from '../assets/images/img1.jpg';
 import img2 from '../assets/images/img2.jpg';
 import img3 from '../assets/images/img3.jpg';
@@ -41,8 +45,13 @@ const items = ref([
     title: '9 loại đậu bổ dưỡng nên dùng nhiều', 
     content: 'Đậu lăng, đậu nành, đậu phộng, đậu Hà Lan giàu chất xơ, protein và nhiều vitamin và khoáng chất giúp giảm lượng đường trong máu, tốt cho tim...',
     image: img3 
-  }
+  },
+  
 ]);
+
+import{ ref} from 'vue';
+
+const isVisible = ref(true);
 </script>
 
 <style scoped>

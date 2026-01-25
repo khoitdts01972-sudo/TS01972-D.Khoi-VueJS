@@ -49,7 +49,7 @@
 
     <footer class="text-center py-4 border-top bg-light mt-auto">
       <div class="container">
-        <p class="mb-0 text-muted">© 2024 - Assignment Vue.js - FPT Polytechnic</p>
+        <p class="mb-0 text-muted">© 2026 - Assignment Vue.js - FPT Polytechnic</p>
       </div>
     </footer>
   </div>
