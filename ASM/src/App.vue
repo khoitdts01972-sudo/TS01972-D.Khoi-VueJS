@@ -1,103 +1,103 @@
 <template>
-  <div class="app-container d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 shadow-sm">
+  <div class="app-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary shadow-sm sticky-top">
       <div class="container">
-        <router-link class="navbar-brand fw-bold" to="/">FPT Blog</router-link>
+        <a class="navbar-brand fw-bold fs-3 d-flex align-items-center gap-2" href="#" @click.prevent="currentView = 'home'">
+          <i class="bi bi-journal-code"></i> ĐĂNG KHÔI BLOG
+        </a>
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav me-auto">
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <router-link class="nav-link" to="/">Trang chủ</router-link>
+              <a class="nav-link" :class="{active: currentView === 'home'}" href="#" @click.prevent="currentView = 'home'">Trang chủ</a>
             </li>
+            
+            <li class="nav-item" v-if="!isLoggedIn">
+              <a class="nav-link" :class="{active: currentView === 'login'}" href="#" @click.prevent="currentView = 'login'">Đăng nhập</a>
+            </li>
+            
+            <li class="nav-item ms-lg-2" v-if="!isLoggedIn">
+              <a class="nav-link btn btn-light text-primary fw-bold px-4 rounded-pill" href="#" @click.prevent="currentView = 'register'">Đăng Ký</a>
+            </li>
+            
             <li class="nav-item" v-if="isLoggedIn">
-              <router-link class="nav-link" to="/create-post">Đăng bài</router-link>
+              <a class="nav-link d-flex align-items-center gap-2" :class="{active: currentView === 'profile'}" href="#" @click.prevent="currentView = 'profile'">
+                <div class="avatar-sm">SV</div> Chào, User
+              </a>
             </li>
-          </ul>
-          
-          <ul class="navbar-nav">
-            <template v-if="!isLoggedIn">
-              <li class="nav-item">
-                <router-link class="nav-link" to="/register">Đăng ký</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link text-info" to="/login">Đăng nhập</router-link>
-              </li>
-            </template>
-
-            <template v-else>
-              <li class="nav-item">
-                <router-link class="nav-link fw-bold text-light" to="/profile">
-                  Chào, {{ userName }}
-                </router-link>
-              </li>
-              <li class="nav-item">
-                <a @click.prevent="handleLogout" class="nav-link text-danger" href="#" style="cursor: pointer;">Đăng xuất</a>
-              </li>
-            </template>
           </ul>
         </div>
       </div>
     </nav>
 
-    <main class="container flex-grow-1">
-      <router-view @login-success="checkLoginStatus"></router-view>
-    </main>
-
-    <footer class="text-center py-4 border-top bg-light mt-auto">
+    <div class="main-content py-5">
       <div class="container">
-        <p class="mb-0 text-muted">© 2026 - Assignment Vue.js - FPT Polytechnic</p>
+        <Transition name="fade" mode="out-in">
+          <component 
+            :is="activeComponent" 
+            @change-view="handleViewChange"
+            @login-success="handleLogin"
+            @logout="handleLogout"
+          ></component>
+        </Transition>
       </div>
+    </div>
+    
+    <footer class="bg-white py-4 text-center text-muted border-top mt-auto">
+      <small>&copy; 2026 FPT Polytechnic - VueJS Assignment</small>
     </footer>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { ref, computed } from 'vue';
+import PostList from './components/PostList.vue';
+import LoginForm from './components/LoginForm.vue';
+import RegisterForm from './components/RegisterForm.vue';
+import CreatePost from './components/CreatePost.vue';
+import UserProfile from './components/UserProfile.vue';
 
-const router = useRouter();
-const route = useRoute();
+const currentView = ref('home');
 const isLoggedIn = ref(false);
-const userName = ref('');
 
-// Hàm kiểm tra trạng thái đăng nhập từ LocalStorage
-const checkLoginStatus = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (user) {
-    isLoggedIn.value = true;
-    userName.value = user.name;
-  } else {
-    isLoggedIn.value = false;
-    userName.value = '';
+// Map tên view sang component tương ứng
+const activeComponent = computed(() => {
+  switch (currentView.value) {
+    case 'home': return PostList;
+    case 'login': return LoginForm;
+    case 'register': return RegisterForm;
+    case 'create': return CreatePost;
+    case 'profile': return UserProfile;
+    default: return PostList;
   }
-};
-
-// Kiểm tra ngay khi vừa tải trang
-onMounted(() => {
-  checkLoginStatus();
 });
 
-// Theo dõi sự thay đổi của route để cập nhật lại menu (đề phòng login xong chưa load lại)
-watch(() => route.path, () => {
-  checkLoginStatus();
-});
-
+const handleViewChange = (viewName) => currentView.value = viewName;
+const handleLogin = () => isLoggedIn.value = true;
 const handleLogout = () => {
-  if (confirm("Bạn có muốn đăng xuất không?")) {
-    localStorage.removeItem('user');
-    checkLoginStatus();
-    router.push('/login');
-  }
+  isLoggedIn.value = false;
+  currentView.value = 'login';
 };
 </script>
 
 <style>
-/* ... giữ nguyên phần style cũ của bạn ... */
-.nav-link.router-link-active {
-  color: #00d2ff !important;
+/* CSS Toàn cục đẹp mắt */
+body {
+  background-color: #f0f2f5;
+  font-family: 'Segoe UI', sans-serif;
 }
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+}
+.avatar-sm {
+  width: 24px; height: 24px; background: rgba(255,255,255,0.2); 
+  border-radius: 50%; font-size: 10px; display: flex; 
+  align-items: center; justify-content: center;
+}
+.fade-enter-active, .fade-leave-active { transition: opacity 0.3s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
 </style>
