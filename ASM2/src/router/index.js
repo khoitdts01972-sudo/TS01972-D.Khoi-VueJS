@@ -4,7 +4,7 @@ import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import PostDetail from '../views/PostDetail.vue'
 import ProfileView from '../views/ProfileView.vue'
-import CreatePost from '../views/CreatePost.vue' // <--- Dòng này hết lỗi
+import CreatePost from '../views/CreatePost.vue' 
 import { store } from '../store'
 
 const router = createRouter({

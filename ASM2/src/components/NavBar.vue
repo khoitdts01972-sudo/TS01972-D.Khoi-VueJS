@@ -10,42 +10,43 @@ const handleLogout = () => {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary sticky-top shadow-lg">
-    <div class="container">
+  <div style="height: 90px;"></div> <nav class="navbar navbar-expand-lg fixed-top px-4 py-3 my-navbar">
+    <div class="container-fluid glass-effect rounded-pill px-4 py-2">
       <RouterLink class="navbar-brand fw-bold d-flex align-items-center gap-2" to="/">
-        <i class="bi bi-code-slash fs-4"></i> FPoly Blog
+        <span class="logo-icon"><i class="bi bi-stars"></i></span>
+        <span class="logo-text">FPoly Blog</span>
       </RouterLink>
       
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+        <i class="bi bi-list fs-2 text-dark"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto ms-3">
+        <ul class="navbar-nav mx-auto">
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/"><i class="bi bi-house-door-fill me-1"></i> Trang chủ</RouterLink>
+            <RouterLink class="nav-link" to="/">Khám Phá</RouterLink>
+          </li>
+          <li class="nav-item" v-if="store.user">
+             <RouterLink class="nav-link" to="/create">Viết Bài</RouterLink>
           </li>
         </ul>
         
-        <div class="d-flex gap-2 align-items-center">
+        <div class="d-flex align-items-center gap-3">
           <template v-if="!store.user">
-            <RouterLink to="/login" class="btn btn-light text-primary fw-bold rounded-pill px-4 shadow-sm">
-              <i class="bi bi-box-arrow-in-right"></i> Đăng nhập
-            </RouterLink>
-            <RouterLink to="/register" class="btn btn-outline-light rounded-pill px-4">Đăng ký</RouterLink>
+            <RouterLink to="/login" class="fw-bold text-dark text-decoration-none">Đăng nhập</RouterLink>
+            <RouterLink to="/register" class="btn btn-dark rounded-pill px-4 shadow-sm">Đăng ký</RouterLink>
           </template>
           
           <template v-else>
             <div class="dropdown">
-              <button class="btn btn-light rounded-pill dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
-                <i class="bi bi-person-circle fs-5 text-primary"></i> 
-                <span class="fw-bold text-primary">{{ store.user.name }}</span>
+              <button class="btn btn-white border rounded-pill dropdown-toggle d-flex align-items-center gap-2 px-3" type="button" data-bs-toggle="dropdown">
+                <img :src="`https://ui-avatars.com/api/?name=${store.user.name}&background=random`" class="rounded-circle" width="28">
+                <span class="fw-bold small">{{ store.user.name }}</span>
               </button>
-              <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
-                <li><RouterLink to="/create" class="dropdown-item"><i class="bi bi-pencil-square me-2"></i>Viết bài mới</RouterLink></li>
-                <li><RouterLink to="/profile" class="dropdown-item"><i class="bi bi-person-gear me-2"></i>Hồ sơ</RouterLink></li>
+              <ul class="dropdown-menu dropdown-menu-end glass-effect border-0 mt-3 rounded-4 p-2 shadow-lg">
+                <li><RouterLink to="/profile" class="dropdown-item rounded-3">Hồ sơ cá nhân</RouterLink></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><button @click="handleLogout" class="dropdown-item text-danger"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</button></li>
+                <li><button @click="handleLogout" class="dropdown-item rounded-3 text-danger fw-bold">Đăng xuất</button></li>
               </ul>
             </div>
           </template>
@@ -56,17 +57,20 @@ const handleLogout = () => {
 </template>
 
 <style scoped>
-.bg-gradient-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Màu tím xanh hiện đại */
+.my-navbar { pointer-events: none; } /* Để click xuyên qua vùng trống */
+.my-navbar .container-fluid { pointer-events: auto; } /* Chỉ bắt sự kiện ở thanh nav */
+
+.logo-icon {
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  color: white; width: 36px; height: 36px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
 }
-.navbar-brand {
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-}
+.logo-text { font-family: 'Outfit', sans-serif; font-weight: 800; letter-spacing: -0.5px; }
+
 .nav-link {
-    transition: color 0.3s;
+  font-weight: 600; color: #636e72; padding: 8px 16px !important; border-radius: 20px; transition: 0.3s;
 }
-.nav-link:hover {
-    color: #ffd700 !important; /* Màu vàng khi hover */
+.nav-link:hover, .router-link-active {
+  background: rgba(108, 92, 231, 0.1); color: #6c5ce7 !important;
 }
 </style>
