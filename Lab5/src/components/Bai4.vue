@@ -10,8 +10,8 @@
 
 <script setup>
 import { ref } from 'vue';
-import CreatePost from './CreatePost.vue'; // Nhớ phải tạo file này
-import PostList from './PostList.vue';     // Nhớ phải tạo file này
+import CreatePost from './CreatePost.vue'; 
+import PostList from './PostList.vue';     
 
 const posts = ref([
   {

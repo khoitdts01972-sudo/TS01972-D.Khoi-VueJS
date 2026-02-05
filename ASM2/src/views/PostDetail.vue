@@ -49,7 +49,7 @@ const handleDelete = () => {
                     <img :src="post.image" class="w-100 object-fit-cover" style="height: 400px;">
                     <div class="overlay-gradient"></div>
                     <div class="position-absolute bottom-0 start-0 p-4 p-md-5 text-white z-2">
-                        <span class="badge bg-white bg-opacity-25 backdrop-blur border border-white border-opacity-25 rounded-pill px-3 py-2 mb-3">Technology</span>
+                        <span class="badge bg-white bg-opacity-25 backdrop-blur border border-white border-opacity-25 rounded-pill px-3 py-2 mb-3">Tin tức mới nhất</span>
                         <h1 class="fw-black display-5 mb-2">{{ post.title }}</h1>
                         <div class="d-flex align-items-center gap-2 opacity-75">
                             <i class="bi bi-person-circle"></i> {{ post.author }}

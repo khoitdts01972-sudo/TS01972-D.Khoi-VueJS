@@ -13,7 +13,7 @@ defineProps({ post: Object });
                     Đọc tiếp
                 </RouterLink>
             </div>
-            <div class="category-tag">Technology</div>
+            <div class="category-tag">Tin tức mới nhất</div>
         </div>
         
         <div class="card-body p-4 d-flex flex-column flex-grow-1">
