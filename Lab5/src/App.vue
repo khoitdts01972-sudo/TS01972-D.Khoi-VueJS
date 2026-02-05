@@ -1,17 +1,14 @@
 <template>
   <div id="app">
-    <h1>LAB 5 - FPT POLYTECHNIC</h1>
+    <h1>LAB 5</h1>
     
     <Bai1 />
-    <Bai2 />
-    <Bai3 />
-    <Bai4 />
+    
     
   </div>
 </template>
 
 <script setup>
-// Import từng bài vào đây
 import Bai1 from './components/Bai1.vue';
 import Bai2 from './components/Bai2.vue';
 import Bai3 from './components/Bai3.vue';
