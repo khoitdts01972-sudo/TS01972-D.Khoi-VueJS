@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import './style.css'
+
 
 // CHÈN 2 DÒNG BOOTSTRAP VÀO ĐÂY
 import 'bootstrap/dist/css/bootstrap.css'

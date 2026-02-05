@@ -2,7 +2,7 @@
   <div id="app">
     <h1>LAB 5</h1>
     
-    <Bai1 />
+    <Bai4 />
     
     
   </div>

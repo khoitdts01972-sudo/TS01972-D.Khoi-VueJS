@@ -18,6 +18,7 @@
         <span v-else-if="score >= 8 && score < 9">Giỏi</span>
         <span v-else-if="score >= 9">Xuất sắc</span>
       </div>
+    
 
     </div>
   </div>
