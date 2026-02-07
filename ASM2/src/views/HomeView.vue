@@ -9,7 +9,7 @@ import PostCard from '../components/PostCard.vue'
       <span class="badge bg-white text-primary px-3 py-2 rounded-pill shadow-sm mb-3">#Trending 2026</span>
       <h1 class="display-3 fw-black mb-3 gradient-text">Chia Sẻ Đam Mê<br>Kết Nối Tri Thức</h1>
       <p class="lead text-secondary mb-4 mx-auto" style="max-width: 600px;">
-        Không gian mở dành cho sinh viên FPoly. Nơi những dòng code trở thành câu chuyện đầy cảm hứng.
+        Không gian mở dành cho sinh viên FPoly. 
       </p>
       
       <div class="d-flex justify-content-center gap-3">

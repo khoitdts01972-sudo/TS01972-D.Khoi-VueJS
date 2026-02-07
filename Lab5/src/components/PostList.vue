@@ -1,6 +1,10 @@
 <template>
   <div>
+    <div class="container">
+
+    
     <h2>Danh sách bài viết</h2>
+    <div class="row">
     <div 
       v-for="(post, index) in posts" 
       :key="index"
@@ -12,6 +16,8 @@
       <h4 class="text-danger">{{ post.author }}</h4>
       <p>{{ post.content }}</p>
     </div>
+    </div>
+  </div>
   </div>
 </template>
 
